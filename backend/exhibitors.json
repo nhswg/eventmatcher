@@ -1,0 +1,192 @@
+[
+  {
+    "firstName": "Eva",
+    "lastName": "Svensson",
+    "company": "Techify",
+    "mainField": "IT",
+    "jobArea": "IT",
+    "jobTitle": "Lead Developer",
+    "educationLevel": "Master",
+    "educationFields": ["Computer Science"],
+    "universities": ["KTH"],
+    "educationCountries": ["Sweden"],
+    "languages": [
+      { "language": "English", "level": "Fluent" },
+      { "language": "Swedish", "level": "Native" }
+    ],
+    "interests": ["AI", "Leadership"],
+    "personalityType": "INTJ",
+    "careerGoal": "Grow the company internationally"
+  },
+  {
+    "firstName": "Lars",
+    "lastName": "Johansson",
+    "company": "MarketPro",
+    "mainField": "Marketing",
+    "jobArea": "Marketing",
+    "jobTitle": "Marketing Manager",
+    "educationLevel": "Bachelor",
+    "educationFields": ["Marketing"],
+    "universities": ["Lund University"],
+    "educationCountries": ["Sweden"],
+    "languages": [
+      { "language": "Swedish", "level": "Native" },
+      { "language": "English", "level": "Fluent" }
+    ],
+    "interests": ["Sustainability", "Entrepreneurship"],
+    "personalityType": "ENFP",
+    "careerGoal": "Lead a global marketing team"
+  },
+  {
+    "firstName": "Sara",
+    "lastName": "Nilsson",
+    "company": "EcoConsult",
+    "mainField": "Engineering",
+    "jobArea": "Engineering",
+    "jobTitle": "Senior Engineer",
+    "educationLevel": "PhD",
+    "educationFields": ["Engineering"],
+    "universities": ["Chalmers"],
+    "educationCountries": ["Sweden"],
+    "languages": [
+      { "language": "English", "level": "Fluent" },
+      { "language": "German", "level": "Intermediate" }
+    ],
+    "interests": ["Sustainability", "Innovation"],
+    "personalityType": "DISC S",
+    "careerGoal": "Drive sustainable engineering"
+  },
+  {
+    "firstName": "Oskar",
+    "lastName": "Berg",
+    "company": "FinSolve",
+    "mainField": "Finance",
+    "jobArea": "Finance",
+    "jobTitle": "CFO",
+    "educationLevel": "Master",
+    "educationFields": ["Economics"],
+    "universities": ["Stockholm University"],
+    "educationCountries": ["Sweden"],
+    "languages": [
+      { "language": "Swedish", "level": "Native" },
+      { "language": "English", "level": "Fluent" }
+    ],
+    "interests": ["Finance", "Project Management"],
+    "personalityType": "DISC D",
+    "careerGoal": "Optimize financial operations"
+  },
+  {
+    "firstName": "Maja",
+    "lastName": "Lindgren",
+    "company": "HR4U",
+    "mainField": "HR",
+    "jobArea": "HR",
+    "jobTitle": "HR Specialist",
+    "educationLevel": "Bachelor",
+    "educationFields": ["Human Resources"],
+    "universities": ["Uppsala University"],
+    "educationCountries": ["Sweden"],
+    "languages": [
+      { "language": "Swedish", "level": "Native" },
+      { "language": "English", "level": "Fluent" }
+    ],
+    "interests": ["Leadership", "Project Management"],
+    "personalityType": "DISC I",
+    "careerGoal": "Develop people and culture"
+  },
+  {
+    "firstName": "Jonas",
+    "lastName": "Ek",
+    "company": "BizLaw",
+    "mainField": "Legal",
+    "jobArea": "Legal",
+    "jobTitle": "Business Analyst",
+    "educationLevel": "Master",
+    "educationFields": ["Law"],
+    "universities": ["Lund University"],
+    "educationCountries": ["Sweden"],
+    "languages": [
+      { "language": "English", "level": "Fluent" },
+      { "language": "German", "level": "Basic" }
+    ],
+    "interests": ["Innovation", "Law"],
+    "personalityType": "DISC C",
+    "careerGoal": "Legal innovation"
+  },
+  {
+    "firstName": "Elin",
+    "lastName": "Persson",
+    "company": "DataVision",
+    "mainField": "IT",
+    "jobArea": "IT",
+    "jobTitle": "Data Scientist",
+    "educationLevel": "PhD",
+    "educationFields": ["Computer Science"],
+    "universities": ["KTH"],
+    "educationCountries": ["Sweden"],
+    "languages": [
+      { "language": "English", "level": "Fluent" },
+      { "language": "Swedish", "level": "Native" }
+    ],
+    "interests": ["AI", "Programming"],
+    "personalityType": "INTJ",
+    "careerGoal": "Advance AI research"
+  },
+  {
+    "firstName": "Henrik",
+    "lastName": "Sundberg",
+    "company": "NordicOps",
+    "mainField": "Operations",
+    "jobArea": "Operations",
+    "jobTitle": "Manager",
+    "educationLevel": "Master",
+    "educationFields": ["Business Administration"],
+    "universities": ["Gothenburg University"],
+    "educationCountries": ["Sweden"],
+    "languages": [
+      { "language": "Swedish", "level": "Native" },
+      { "language": "English", "level": "Fluent" }
+    ],
+    "interests": ["Project Management", "Leadership"],
+    "personalityType": "DISC S",
+    "careerGoal": "Streamline operations"
+  },
+  {
+    "firstName": "Sofie",
+    "lastName": "Andersson",
+    "company": "Designify",
+    "mainField": "IT",
+    "jobArea": "IT",
+    "jobTitle": "UX Designer",
+    "educationLevel": "Bachelor",
+    "educationFields": ["Design"],
+    "universities": ["Umeå University"],
+    "educationCountries": ["Sweden"],
+    "languages": [
+      { "language": "English", "level": "Fluent" },
+      { "language": "Swedish", "level": "Native" }
+    ],
+    "interests": ["Design", "Innovation"],
+    "personalityType": "ENFP",
+    "careerGoal": "Create user-friendly products"
+  },
+  {
+    "firstName": "Per",
+    "lastName": "Nilsson",
+    "company": "SalesForceNordic",
+    "mainField": "Sales",
+    "jobArea": "Sales",
+    "jobTitle": "Sales Representative",
+    "educationLevel": "Bachelor",
+    "educationFields": ["Economics"],
+    "universities": ["Örebro University"],
+    "educationCountries": ["Sweden"],
+    "languages": [
+      { "language": "Swedish", "level": "Native" },
+      { "language": "English", "level": "Fluent" }
+    ],
+    "interests": ["Entrepreneurship", "Marketing"],
+    "personalityType": "DISC I",
+    "careerGoal": "Expand sales network"
+  }
+]
