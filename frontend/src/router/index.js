@@ -19,6 +19,16 @@ const router = createRouter({
       name: 'ExhibitoView',
       component: () => import('../views/ExhibitorView.vue')
     },
+    {
+      path: '/matchmaker/',
+      name: 'MatchmakerView',
+      component: () => import('../views/MatchmakerView.vue')
+    },
+    {
+      path: '/yourmatches/',
+      name: 'YourMatchesView',
+      component: () => import('../views/YourMatchesView.vue')
+    },
   ]
 })
 

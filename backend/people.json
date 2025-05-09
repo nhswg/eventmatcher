@@ -1,310 +1,82 @@
 [
   {
-    "firstName": "Anna",
-    "lastName": "Karlsson",
-    "jobTitle": "1st year associate",
-    "jobArea": "Finance",
-    "educationLevel": "Bachelor",
-    "educationFields": ["Economics"],
-    "universities": ["Stockholm University"],
-    "educationCountries": ["Sweden"],
-    "languages": [
-      { "language": "Swedish", "level": "Native" },
-      { "language": "English", "level": "Fluent" }
-    ],
-    "interests": ["Sustainability", "Leadership"],
-    "personalityType": "ENFP",
-    "careerGoal": "Become CFO"
-  },
-  {
-    "firstName": "Erik",
-    "lastName": "Andersson",
-    "jobTitle": "Lead Developer",
+    "firstName": "Lucas",
+    "lastName": "Nguyen",
+    "jobTitle": "Junior Data Analyst",
     "jobArea": "IT",
-    "educationLevel": "Master",
-    "educationFields": ["Computer Science"],
-    "universities": ["KTH"],
-    "educationCountries": ["Sweden"],
-    "languages": [
-      { "language": "Swedish", "level": "Native" },
-      { "language": "English", "level": "Fluent" }
-    ],
-    "interests": ["AI", "Entrepreneurship"],
-    "personalityType": "INTJ",
-    "careerGoal": "Start a tech company"
+    "interests": ["AI", "Programming", "Chess"],
+    "eventGoals": ["Networking"]
   },
   {
-    "firstName": "Maria",
-    "lastName": "Johansson",
-    "jobTitle": "Consultant",
-    "jobArea": "HR",
-    "educationLevel": "Bachelor",
-    "educationFields": ["Human Resources"],
-    "universities": ["Lund University"],
-    "educationCountries": ["Sweden"],
-    "languages": [
-      { "language": "Swedish", "level": "Native" },
-      { "language": "English", "level": "Fluent" }
-    ],
-    "interests": ["Leadership", "Sustainability"],
-    "personalityType": "DISC D",
-    "careerGoal": "HR Director"
+    "firstName": "Fatima",
+    "lastName": "Ali",
+    "jobTitle": "Marketing Manager",
+    "jobArea": "Marketing",
+    "interests": ["Digital Marketing", "Sustainability", "Yoga"],
+    "eventGoals": ["Sales"]
   },
   {
-    "firstName": "Johan",
+    "firstName": "Oskar",
     "lastName": "Bergström",
-    "jobTitle": "Developer",
-    "jobArea": "IT",
-    "educationLevel": "Bachelor",
-    "educationFields": ["Computer Science"],
-    "universities": ["Chalmers"],
-    "educationCountries": ["Sweden"],
-    "languages": [
-      { "language": "English", "level": "Fluent" }
-    ],
-    "interests": ["Programming", "AI"],
-    "personalityType": "INTJ",
-    "careerGoal": "Fullstack developer"
-  },
-  {
-    "firstName": "Sofia",
-    "lastName": "Lind",
-    "jobTitle": "Analyst",
-    "jobArea": "Finance",
-    "educationLevel": "Master",
-    "educationFields": ["Economics"],
-    "universities": ["Uppsala University"],
-    "educationCountries": ["Sweden"],
-    "languages": [
-      { "language": "Swedish", "level": "Native" },
-      { "language": "English", "level": "Fluent" }
-    ],
-    "interests": ["Finance", "Project Management"],
-    "personalityType": "DISC C",
-    "careerGoal": "Financial analyst"
-  },
-  {
-    "firstName": "Mats",
-    "lastName": "Persson",
-    "jobTitle": "Engineer",
-    "jobArea": "Engineering",
-    "educationLevel": "Master",
-    "educationFields": ["Engineering"],
-    "universities": ["KTH"],
-    "educationCountries": ["Sweden"],
-    "languages": [
-      { "language": "English", "level": "Fluent" }
-    ],
-    "interests": ["Innovation", "Sustainability"],
-    "personalityType": "DISC S",
-    "careerGoal": "Product engineer"
-  },
-  {
-    "firstName": "Linda",
-    "lastName": "Eriksson",
     "jobTitle": "HR Specialist",
     "jobArea": "HR",
-    "educationLevel": "Bachelor",
-    "educationFields": ["Human Resources"],
-    "universities": ["Lund University"],
-    "educationCountries": ["Sweden"],
-    "languages": [
-      { "language": "Swedish", "level": "Native" }
-    ],
-    "interests": ["Leadership", "Project Management"],
-    "personalityType": "DISC I",
-    "careerGoal": "HR Manager"
+    "interests": ["Leadership", "Team Building", "Volunteering"],
+    "eventGoals": ["Employment"]
   },
   {
-    "firstName": "Patrik",
-    "lastName": "Nilsson",
-    "jobTitle": "Product Owner",
-    "jobArea": "IT",
-    "educationLevel": "Master",
-    "educationFields": ["Computer Science"],
-    "universities": ["KTH"],
-    "educationCountries": ["Sweden"],
-    "languages": [
-      { "language": "English", "level": "Fluent" }
-    ],
-    "interests": ["AI", "Innovation"],
-    "personalityType": "ENFP",
-    "careerGoal": "Lead product teams"
-  },
-  {
-    "firstName": "Emma",
-    "lastName": "Sundqvist",
-    "jobTitle": "UX Designer",
-    "jobArea": "IT",
-    "educationLevel": "Bachelor",
-    "educationFields": ["Design"],
-    "universities": ["Umeå University"],
-    "educationCountries": ["Sweden"],
-    "languages": [
-      { "language": "English", "level": "Fluent" }
-    ],
-    "interests": ["Design", "Innovation"],
-    "personalityType": "ENFP",
-    "careerGoal": "UX Lead"
-  },
-  {
-    "firstName": "Olle",
-    "lastName": "Larsson",
-    "jobTitle": "Business Analyst",
+    "firstName": "Sara",
+    "lastName": "Pettersson",
+    "jobTitle": "Legal Counsel",
     "jobArea": "Legal",
-    "educationLevel": "Master",
-    "educationFields": ["Law"],
-    "universities": ["Lund University"],
-    "educationCountries": ["Sweden"],
-    "languages": [
-      { "language": "German", "level": "Basic" }
-    ],
-    "interests": ["Law", "Innovation"],
-    "personalityType": "DISC C",
-    "careerGoal": "Legal advisor"
+    "interests": ["Law", "Ethics", "Cycling"],
+    "eventGoals": ["Education/research"]
   },
   {
-    "firstName": "Karin",
-    "lastName": "Björk",
-    "jobTitle": "Manager",
-    "jobArea": "Operations",
-    "educationLevel": "Master",
-    "educationFields": ["Business Administration"],
-    "universities": ["Gothenburg University"],
-    "educationCountries": ["Sweden"],
-    "languages": [
-      { "language": "English", "level": "Fluent" }
-    ],
-    "interests": ["Project Management", "Leadership"],
-    "personalityType": "DISC S",
-    "careerGoal": "Operations manager"
-  },
-  {
-    "firstName": "Fredrik",
-    "lastName": "Sjöberg",
-    "jobTitle": "Sales Representative",
-    "jobArea": "Sales",
-    "educationLevel": "Bachelor",
-    "educationFields": ["Economics"],
-    "universities": ["Örebro University"],
-    "educationCountries": ["Sweden"],
-    "languages": [
-      { "language": "Swedish", "level": "Native" }
-    ],
-    "interests": ["Entrepreneurship", "Marketing"],
-    "personalityType": "DISC I",
-    "careerGoal": "Sales manager"
-  },
-  {
-    "firstName": "Helena",
-    "lastName": "Lund",
-    "jobTitle": "Director",
-    "jobArea": "Finance",
-    "educationLevel": "PhD",
-    "educationFields": ["Economics"],
-    "universities": ["Stockholm University"],
-    "educationCountries": ["Sweden"],
-    "languages": [
-      { "language": "English", "level": "Fluent" }
-    ],
-    "interests": ["Finance", "Leadership"],
-    "personalityType": "DISC D",
-    "careerGoal": "Finance director"
-  },
-  {
-    "firstName": "Mikael",
-    "lastName": "Holm",
+    "firstName": "Jonas",
+    "lastName": "Lindqvist",
     "jobTitle": "Engineer",
     "jobArea": "Engineering",
-    "educationLevel": "Master",
-    "educationFields": ["Engineering"],
-    "universities": ["Chalmers"],
-    "educationCountries": ["Sweden"],
-    "languages": [
-      { "language": "German", "level": "Intermediate" }
-    ],
-    "interests": ["Sustainability", "Innovation"],
-    "personalityType": "DISC S",
-    "careerGoal": "Green engineer"
+    "interests": ["Robotics", "Innovation", "Gardening"],
+    "eventGoals": ["Investment"]
   },
   {
-    "firstName": "Jenny",
-    "lastName": "Ekström",
-    "jobTitle": "Consultant",
-    "jobArea": "Marketing",
-    "educationLevel": "Bachelor",
-    "educationFields": ["Marketing"],
-    "universities": ["Lund University"],
-    "educationCountries": ["Sweden"],
-    "languages": [
-      { "language": "English", "level": "Fluent" }
-    ],
-    "interests": ["Marketing", "Innovation"],
-    "personalityType": "ENFP",
-    "careerGoal": "Marketing consultant"
-  },
-  {
-    "firstName": "Anders",
-    "lastName": "Pettersson",
-    "jobTitle": "Senior Engineer",
-    "jobArea": "Engineering",
-    "educationLevel": "PhD",
-    "educationFields": ["Engineering"],
-    "universities": ["KTH"],
-    "educationCountries": ["Sweden"],
-    "languages": [
-      { "language": "English", "level": "Fluent" }
-    ],
-    "interests": ["Innovation", "Programming"],
-    "personalityType": "INTJ",
-    "careerGoal": "Lead engineer"
-  },
-  {
-    "firstName": "Camilla",
-    "lastName": "Hansson",
-    "jobTitle": "Data Scientist",
-    "jobArea": "IT",
-    "educationLevel": "PhD",
-    "educationFields": ["Computer Science"],
-    "universities": ["KTH"],
-    "educationCountries": ["Sweden"],
-    "languages": [
-      { "language": "English", "level": "Fluent" }
-    ],
-    "interests": ["AI", "Programming"],
-    "personalityType": "INTJ",
-    "careerGoal": "AI researcher"
-  },
-  {
-    "firstName": "Peter",
+    "firstName": "Maja",
     "lastName": "Svensson",
-    "jobTitle": "Product Owner",
-    "jobArea": "IT",
-    "educationLevel": "Master",
-    "educationFields": ["Computer Science"],
-    "universities": ["KTH"],
-    "educationCountries": ["Sweden"],
-    "languages": [
-      { "language": "English", "level": "Fluent" }
-    ],
-    "interests": ["AI", "Project Management"],
-    "personalityType": "ENFP",
-    "careerGoal": "Product lead"
+    "jobTitle": "Sales Representative",
+    "jobArea": "Sales",
+    "interests": ["Entrepreneurship", "Negotiation", "Travel"],
+    "eventGoals": ["Sales"]
   },
   {
-    "firstName": "Malin",
-    "lastName": "Jansson",
+    "firstName": "Elin",
+    "lastName": "Karlsson",
+    "jobTitle": "Business Analyst",
+    "jobArea": "Finance",
+    "interests": ["Finance", "Big Data", "Board Games"],
+    "eventGoals": ["Networking"]
+  },
+  {
+    "firstName": "David",
+    "lastName": "Johansson",
+    "jobTitle": "UX Designer",
+    "jobArea": "IT",
+    "interests": ["UI/UX Design", "Drawing", "Cycling"],
+    "eventGoals": ["Education/research"]
+  },
+  {
+    "firstName": "Amina",
+    "lastName": "Mohamed",
     "jobTitle": "Project Manager",
-    "jobArea": "Operations",
-    "educationLevel": "Master",
-    "educationFields": ["Business Administration"],
-    "universities": ["Gothenburg University"],
-    "educationCountries": ["Sweden"],
-    "languages": [
-      { "language": "English", "level": "Fluent" }
-    ],
-    "interests": ["Project Management", "Leadership"],
-    "personalityType": "DISC S",
-    "careerGoal": "Project director"
+    "jobArea": "Engineering",
+    "interests": ["Project Management", "Coaching", "Cooking"],
+    "eventGoals": ["Employment"]
+  },
+  {
+    "firstName": "Viktor",
+    "lastName": "Eriksson",
+    "jobTitle": "Full-stack Developer",
+    "jobArea": "IT",
+    "interests": ["Web Development", "Game Development", "Music Production"],
+    "eventGoals": ["Networking"]
   }
 ]

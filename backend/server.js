@@ -123,6 +123,26 @@ app.get('/api/parameters/:param', (req, res) => {
   }
 });
 
+// Spara person till me.json
+app.post('/api/me', (req, res) => {
+  fs.writeFileSync('me.json', JSON.stringify([req.body]));
+  res.json({ status: "saved" });
+});
+
+// Matcha me.json mot exhibitors.json
+app.get('/api/me/matches', (req, res) => {
+  exec('python3 matcher.py me.json exhibitors.json parameters/job_titles.json', (err, stdout) => {
+    if (err) return res.status(500).json({ error: "Matchning misslyckades" });
+    res.json(JSON.parse(stdout)[0]); // Endast första personen i me.json
+  });
+});
+
+// Rensa me.json
+app.delete('/api/me', (req, res) => {
+  if (fs.existsSync('me.json')) fs.unlinkSync('me.json');
+  res.json({ status: "deleted" });
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });

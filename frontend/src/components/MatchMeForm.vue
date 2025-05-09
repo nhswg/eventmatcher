@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form @submit.prevent="submitForm">
+    <form v-if="!submitted" @submit.prevent="handleSubmit">
       <div>
         <label>First Name:</label>
         <input v-model="firstName" required />
@@ -8,10 +8,6 @@
       <div>
         <label>Last Name:</label>
         <input v-model="lastName" required />
-      </div>
-      <div>
-        <label>Company:</label>
-        <input v-model="company" required />
       </div>
       <div>
         <label>Job Area:</label>
@@ -28,6 +24,13 @@
         </select>
       </div>
       <div>
+        <label>Event Goal:</label>
+        <select v-model="eventGoal" required>
+          <option disabled value="">Select event goal</option>
+          <option v-for="goal in eventGoalsList" :key="goal">{{ goal }}</option>
+        </select>
+      </div>
+      <div>
         <label>Interests (max 3):</label>
         <div class="checkbox-list">
           <label v-for="interest in interestsList" :key="interest" class="checkbox-label">
@@ -41,15 +44,13 @@
           </label>
         </div>
       </div>
-      <div>
-        <label>Event Goal:</label>
-        <select v-model="eventGoal" required>
-          <option disabled value="">Select event goal</option>
-          <option v-for="goal in eventGoalsList" :key="goal">{{ goal }}</option>
-        </select>
-      </div>
-      <button type="submit">Submit</button>
+      <button type="submit">SUBMIT!</button>
     </form>
+    <div v-else class="after-submit">
+      <router-link to="/yourmatches/">
+        <button class="matchmake-btn">See Your Matches!</button>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -59,7 +60,6 @@ export default {
     return {
       firstName: "",
       lastName: "",
-      company: "",
       jobArea: "",
       jobTitle: "",
       interests: [],
@@ -68,6 +68,7 @@ export default {
       jobTitles: [],
       interestsList: [],
       eventGoalsList: [],
+      submitted: false,
     };
   },
   methods: {
@@ -84,31 +85,21 @@ export default {
       ]);
       this.jobTitles = Object.values(this.jobTitlesRaw).flat();
     },
-    async submitForm() {
-      const formData = {
+    async handleSubmit() {
+      const tempPerson = {
         firstName: this.firstName,
         lastName: this.lastName,
-        company: this.company,
         jobArea: this.jobArea,
         jobTitle: this.jobTitle,
         interests: this.interests,
         eventGoals: [this.eventGoal],
       };
-      await fetch("http://localhost:3001/api/exhibitors", {
+      await fetch("http://localhost:3001/api/me", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(tempPerson),
       });
-      this.resetForm();
-    },
-    resetForm() {
-      this.firstName = "";
-      this.lastName = "";
-      this.company = "";
-      this.jobArea = "";
-      this.jobTitle = "";
-      this.interests = [];
-      this.eventGoal = "";
+      this.$router.push("/yourmatches/");
     },
   },
   mounted() {
@@ -228,5 +219,33 @@ form > div {
   .checkbox-list {
     gap: 0.3rem 0.5rem;
   }
+}
+
+.after-submit {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.matchmake-btn {
+  font-size: 2rem;
+  font-weight: 800;
+  font-style: italic;
+  width: 340px;
+  height: 90px;
+  background: linear-gradient(90deg, #00e6d0 0%, #2e8fff 100%);
+  color: #0b3866;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  letter-spacing: 1.5px;
+  transition: transform 0.18s, box-shadow 0.18s, background 0.18s, color 0.18s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.matchmake-btn:hover {
+  background: linear-gradient(90deg, #2e8fff 0%, #00e6d0 100%);
+  color: #fff;
+  transform: translateY(-6px) scale(1.04);
 }
 </style>
