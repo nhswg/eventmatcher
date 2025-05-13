@@ -104,8 +104,10 @@ export default {
       this.loading = true;
       this.error = null;
       try {
-        const response = await axios.get("http://localhost:3001/api/matches");
-        this.matches = response.data;
+        const response = await fetch("http://localhost:3001/api/matches");
+        if (!response.ok) throw new Error("Network response was not ok");
+        const data = await response.json();
+        this.matches = data;
       } catch (error) {
         this.error = "Kunde inte hämta matcher";
       } finally {
