@@ -34,20 +34,21 @@ header {
   margin-top: 3rem;
   width: 100%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center; /* Ändrat från flex-start till center */
   align-items: flex-end;
-  padding-left: 3rem;
+  padding-left: 0; /* Ta bort padding för centrerad header */
   box-sizing: border-box;
 }
 h1 {
   font-family: 'Montserrat', 'Inter', Arial, sans-serif;
   font-size: 3rem;
-  font-style: bold;
+  font-weight: bold; /* Ändra till font-weight istället för font-style */
   color: rgba(255,255,255,0.92);
   letter-spacing: 2px;
   margin-top: 0rem;
   margin-bottom: 2rem;
   text-shadow: 0 4px 24px rgba(44,62,80,0.2);
+  text-align: center; /* Lägg till centrerad text */
 }
 .header-line {
   width: 95%; height: 10px;
@@ -91,5 +92,50 @@ h1 {
 .extra-button:hover {
   background: linear-gradient(90deg, #2e8fff 0%, #00e6d0 100%);
   color: #fff; transform: translateY(-3px) scale(1.03);
+}
+
+/* Mobilanpassning */
+@media (max-width: 600px) {
+  .web-container {
+    padding: 0 0.5rem;
+  }
+  header {
+    margin-top: 2rem;
+    padding-left: 0;
+    justify-content: center;
+  }
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+  }
+  .header-line {
+    width: 100%;
+    height: 6px;
+    margin-bottom: 1.2rem;
+  }
+  .main-buttons {
+    margin-top: 4vh;
+    gap: 2rem;
+    width: 100%;
+  }
+  .matchmake-btn {
+    font-size: 1.5rem;
+    width: 95vw;
+    max-width: 340px;
+    height: 60px;
+    margin-bottom: 1.2rem;
+  }
+  .extra-buttons {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    align-items: center;
+  }
+  .extra-button {
+    font-size: 1rem;
+    width: 95vw;
+    max-width: 200px;
+    height: 45px;
+  }
 }
 </style>
