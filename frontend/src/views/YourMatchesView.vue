@@ -122,10 +122,17 @@ export default {
 </script>
 
 <style scoped>
+:global(body) {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0b3866 0%, #2e8fff 100%);
+}
 .people-view {
   max-width: 900px;
   margin: 0 auto;
   padding: 2rem 1rem;
+  background: #f8f9fa; /* Behåll denna för att "skydda" mittenrutan */
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
 }
 .loading, .error {
   margin: 1rem 0;
