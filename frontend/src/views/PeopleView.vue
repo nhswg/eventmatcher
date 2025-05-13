@@ -82,7 +82,6 @@
 
 <script>
 import RegistrationForm from "../components/RegistrationForm.vue";
-import axios from "axios";
 
 export default {
   name: "PeopleView",
