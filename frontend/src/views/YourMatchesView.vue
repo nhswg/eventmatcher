@@ -1,19 +1,20 @@
 <template>
   <div class="people-view">
-    <h1>Matchmaking with exhibitors</h1>
+    <h1>MATCHMAKING</h1>
     <div v-if="loading" class="loading">Laddar matcher...</div>
     <div v-if="error" class="error">{{ error }}</div>
     <div v-if="match && match.top_matches.length" class="person-card">
       <div class="person-header">
         <span class="person-name">{{ match.person.firstName }} {{ match.person.lastName }}</span>
-        <span class="person-job">{{ match.person.jobTitle }} – {{ match.person.jobArea }}</span>
+        <span class="person-job">{{ match.person.jobTitle }} ({{ match.person.jobArea }})</span>
+        <div class="person-divider"></div>
         <span class="person-interests">
           <span v-for="(interest, i) in match.person.interests" :key="i" class="interest-chip">{{ interest }}</span>
         </span>
-        <span class="person-goal"> Goal: {{ match.person.eventGoals[0] }}</span>
+        <span class="person-goal"> Primary event goal: {{ match.person.eventGoals[0] }}</span>
       </div>
       <div class="matches-section">
-        <h3>Top 3 exhibitors for you:</h3>
+        <h3>Your Top 3 Matches:</h3>
         <div class="matches-list">
           <div
             v-for="(top, i) in match.top_matches"
@@ -54,29 +55,34 @@
               </div>
             </div>
             <div class="match-header">
+              <span class="match-company" v-if="top.exhibitor.company">{{ top.exhibitor.company }}</span>
+              <div class="match-divider"></div>
               <span class="match-name">
                 {{ top.exhibitor.firstName }} {{ top.exhibitor.lastName }}
               </span>
-              <span class="match-company" v-if="top.exhibitor.company">({{ top.exhibitor.company }})</span>
-            </div>
-            <div class="match-details">
-              <span class="match-job">{{ top.exhibitor.jobTitle }} – {{ top.exhibitor.jobArea }}</span>
+              <span class="match-job">{{ top.exhibitor.jobTitle }}</span>
               <span class="match-interests">
                 <span v-for="(interest, j) in top.exhibitor.interests" :key="j" class="interest-chip">{{ interest }}</span>
               </span>
-              <span class="match-goal"> Goal: {{ top.exhibitor.eventGoals[0] }}</span>
+              <span class="match-goal"> Primary event goal: {{ top.exhibitor.eventGoals[0] }}</span>
             </div>
+
+            <template v-if="i === 0 && sameFirstChoicePeople.length">
+              <div class="others-matched-section">
+                <div class="others-matched-title">Others who matched:</div>
+                <div class="others-matched-list">
+                  <div
+                    v-for="(person, idx) in sameFirstChoicePeople"
+                    :key="idx"
+                    class="profile-initials"
+                    :title="person.person.firstName + ' ' + person.person.lastName"
+                  >
+                    {{ getInitials(person.person.firstName, person.person.lastName) }}
+                  </div>
+                </div>
+              </div>
+            </template>
           </div>
-        </div>
-        <div v-if="sameFirstChoicePeople.length" class="same-choice-section">
-          <h4>Other with {{ match.top_matches[0].exhibitor.firstName }} {{ match.top_matches[0].exhibitor.lastName }} as a first match:</h4>
-          <ul>
-            <li v-for="(person, idx) in sameFirstChoicePeople" :key="idx">
-              <span class="same-choice-name">
-                {{ person.person.firstName }} {{ person.person.lastName }}
-              </span>
-            </li>
-          </ul>
         </div>
       </div>
     </div>
@@ -87,7 +93,6 @@
 </template>
 
 <script>
-import axios from "axios";
 
 export default {
   name: "YourMatchesView",
@@ -149,7 +154,10 @@ export default {
     },
     async cleanupMeFile() {
       await fetch("http://localhost:3001/api/me", { method: "DELETE" });
-    }
+    },
+    getInitials(first, last) {
+      return (first?.[0] || "") + (last?.[0] || "");
+    },
   },
   mounted() {
     this.fetchMatch();
@@ -163,16 +171,24 @@ export default {
 
 <style scoped>
 :global(body) {
-  min-height: 100vh;
+  min-height: 110vh;
   background: linear-gradient(135deg, #0b3866 0%, #2e8fff 100%);
 }
 .people-view {
   max-width: 900px;
   margin: 0 auto;
+  margin-top: 1.5rem;
   padding: 2rem 1rem;
   background: #f8f9fa;
   border-radius: 1rem;
   box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+.people-view h1 {
+  font-size: 4rem;
+  color: #0b3866;
+  margin-top: 0.3rem;
+  margin-bottom: 1.5rem;
+  font-style: italic  ;
 }
 .loading, .error {
   margin: 1rem 0;
@@ -180,46 +196,69 @@ export default {
   text-align: center;
 }
 .person-card {
-  background: #f8f9fa;
-  border-radius: 1rem;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-  padding: 1.5rem 1.5rem 1.2rem 1.5rem;
+  background: #fff;
+  border-radius: 0.7rem;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+  padding: 1.5rem 1rem 1rem 1rem;
   margin-top: 2rem;
+  min-width: 220px;
+  min-height: 180px;
+  border: 2px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  overflow: visible;
 }
 .person-header {
-  border-bottom: 2px solid #e0e0e0;
-  padding-bottom: 0.7rem;
-  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-weight: 600;
+  color: #0b3866;
+  margin-bottom: 0.2rem;
+  margin-top: 0.5rem;
+  width: 100%;
 }
 .person-name {
-  font-size: 1.4rem;
-  font-weight: 700;
+  font-size: 2.5rem;
+  font-weight: 600;
   color: #0b3866;
 }
 .person-job {
   display: block;
-  font-size: 1.1rem;
-  color: #1976d2;
+  font-size: 1rem;
+  font-style: italic;
+  color: #424242;
   margin-top: 0.2rem;
   margin-bottom: 0.2rem;
+}
+.person-divider {
+  width: 100%;
+  border-bottom: 2px solid #e0e0e0;
+  margin-bottom: 0.7rem;
 }
 .person-interests {
   display: flex;
   flex-wrap: wrap;
   gap: 0.3rem;
   margin-bottom: 0.2rem;
-  justify-content: center;
+  justify-content: flex-start;
+  width: 100%;
 }
 .person-goal {
-  font-size: 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  font-style: italic;
   color: #555;
+  margin-top: 0.7rem;
 }
 .matches-section {
-  margin-top: 0.5rem;
+  margin-top: 2rem;
 }
 .matches-section h3 {
-  font-size: 1.1rem;
-  margin-bottom: 0.7rem;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
   color: #0b3866;
 }
 .matches-list {
@@ -246,7 +285,6 @@ export default {
 }
 .match-card.best-match {
   border: 2.5px solid #1976d2;
-  background: #e3f0fd;
 }
 .match-score-container {
   position: absolute;
@@ -264,47 +302,65 @@ export default {
   border: 3px solid #fff;
 }
 .match-header {
-  font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   font-weight: 600;
   color: #0b3866;
   margin-bottom: 0.2rem;
   margin-top: 0.5rem;
 }
-.match-company {
+.match-name {
+  font-size: 1.3rem;
+  font-weight: 600;
+  
   color: #1976d2;
-  font-size: 1rem;
-  margin-left: 0.2rem;
 }
-.match-details {
-  font-size: 0.98rem;
-  color: #444;
+.match-company {
+  color: #0b3866;
+  font-size: 1.6rem;
+  margin-top: -1rem;
   margin-bottom: 0.5rem;
 }
+.match-divider {
+  width: 230px;
+  border-bottom: 2px solid #e0e0e0;
+  margin-bottom: 0.5rem;
+}
+
 .match-job {
   display: block;
   font-size: 1rem;
-  color: #1976d2;
-  margin-bottom: 0.2rem;
+  font-style: italic;
+  color: #424242;
+  margin-top: 0.2rem;
+  margin-bottom: 0.8rem;
 }
 .match-interests {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.2rem;
+  flex-direction: column;
+  gap: 0.1rem;
   margin-bottom: 0.2rem;
 }
 .match-goal {
+  margin-top: 2rem;
   font-size: 0.95rem;
+  font-weight: 500;
+  font-style: italic;
   color: #555;
 }
 .interest-chip {
-  background: #e0e7ef;
-  color: #1976d2;
+  background: #d7e6f5;
+  color: #337bc4;
   border-radius: 0.7em;
   padding: 0.13em 0.7em;
   font-size: 0.93em;
-  margin-right: 0.1em;
-  margin-bottom: 0.1em;
-  display: inline-block;
+  margin: 0 0 0.1em 0;
+  display: block;
+  align-self: flex-start;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-weight: 500;
 }
 .circle-container {
   width: 44px;
@@ -322,18 +378,43 @@ export default {
   transform: rotate(-90deg);
   transform-origin: 50% 50%;
 }
-.same-choice-section {
+.others-matched-section {
   margin-top: 1.2rem;
-  background: #f0f7ff;
-  border-radius: 0.5rem;
-  padding: 0.7rem 1rem;
-  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
 }
-
-
-.same-choice-name {
-  color: #111;
-  font-weight: 500;
+.others-matched-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0b3866;
+  margin-bottom: 0.3rem;
+}
+.others-matched-list {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+.profile-initials {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  background: #e3f0fd;
+  color: #1976d2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 0 1px 4px rgba(25,118,210,0.08);
+  cursor: pointer;
+  transition: background 0.2s;
+  border: 2px solid #b6d4fa;
+}
+.profile-initials:hover {
+  background: #1976d2;
+  color: #fff;
 }
 @media (max-width: 900px) {
   .matches-list {
