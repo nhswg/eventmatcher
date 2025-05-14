@@ -34,21 +34,21 @@ header {
   margin-top: 3rem;
   width: 100%;
   display: flex;
-  justify-content: center; /* Ändrat från flex-start till center */
+  justify-content: center; 
   align-items: flex-end;
-  padding-left: 0; /* Ta bort padding för centrerad header */
+  padding-left: 0;
   box-sizing: border-box;
 }
 h1 {
   font-family: 'Montserrat', 'Inter', Arial, sans-serif;
   font-size: 3rem;
-  font-weight: bold; /* Ändra till font-weight istället för font-style */
+  font-weight: bold; 
   color: rgba(255,255,255,0.92);
   letter-spacing: 2px;
   margin-top: 0rem;
   margin-bottom: 2rem;
   text-shadow: 0 4px 24px rgba(44,62,80,0.2);
-  text-align: center; /* Lägg till centrerad text */
+  text-align: center; 
 }
 .header-line {
   width: 95%; height: 10px;

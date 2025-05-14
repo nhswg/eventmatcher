@@ -10,7 +10,7 @@ const PORT = 3001;
 app.use(cors());
 app.use(express.json());
 
-// Hjälpfunktioner för filhantering
+// Filhantering
 function readJsonFile(filename) {
   if (fs.existsSync(filename)) {
     return JSON.parse(fs.readFileSync(filename));

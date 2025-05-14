@@ -135,7 +135,7 @@ export default {
       bestMatchColor: "#1976d2",
       circumference: 2 * Math.PI * 18,
       allMatches: [],
-      displayedIndexes: [0, 1, 2], // index i all_matches som visas på plats 1, 2, 3
+      displayedIndexes: [0, 1, 2], 
     };
   },
   computed: {
@@ -167,7 +167,6 @@ export default {
         nextIdx++;
       }
       if (nextIdx < this.match.all_matches.length) {
-        // Gör en kopia och byt ut indexet, så Vue ser ändringen
         const newIndexes = [...this.displayedIndexes];
         newIndexes[pos] = nextIdx;
         this.displayedIndexes = newIndexes;
@@ -325,13 +324,13 @@ export default {
   flex-direction: column;
   align-items: flex-start;
   min-width: 220px;
-  height: 340px;         /* Fixerad höjd */
-  min-height: 340px;     /* Säkerställ minsta höjd */
+  height: 340px;        
+  min-height: 340px;   
   border: 2px solid #e0e0e0;
   transition: border 0.2s;
   overflow: visible;
   position: relative;
-  padding-bottom: 3.2rem; /* ge plats för knappen */
+  padding-bottom: 3.2rem; 
   margin-bottom: 2.5rem;
 }
 .match-card.best-match {
