@@ -324,9 +324,9 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  position: relative;
   min-width: 220px;
-  min-height: 180px;
+  height: 340px;         /* Fixerad höjd */
+  min-height: 340px;     /* Säkerställ minsta höjd */
   border: 2px solid #e0e0e0;
   transition: border 0.2s;
   overflow: visible;
