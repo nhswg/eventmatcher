@@ -68,6 +68,16 @@
             </div>
           </div>
         </div>
+        <div v-if="sameFirstChoicePeople.length" class="same-choice-section">
+          <h4>Other with {{ match.top_matches[0].exhibitor.firstName }} {{ match.top_matches[0].exhibitor.lastName }} as a first match:</h4>
+          <ul>
+            <li v-for="(person, idx) in sameFirstChoicePeople" :key="idx">
+              <span class="same-choice-name">
+                {{ person.person.firstName }} {{ person.person.lastName }}
+              </span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
     <div v-else-if="!loading && !error">
@@ -88,7 +98,26 @@ export default {
       error: null,
       bestMatchColor: "#1976d2",
       circumference: 2 * Math.PI * 18,
+      allMatches: [], // Lägg till denna
     };
+  },
+  computed: {
+    sameFirstChoicePeople() {
+      if (!this.match || !this.allMatches.length) return [];
+      const myFirst = this.match.top_matches[0];
+      if (!myFirst) return [];
+      // Jämför på namn (eller annan unik identifierare om finns)
+      return this.allMatches.filter(
+        m =>
+          m.top_matches &&
+          m.top_matches.length &&
+          m.top_matches[0].exhibitor.firstName === myFirst.exhibitor.firstName &&
+          m.top_matches[0].exhibitor.lastName === myFirst.exhibitor.lastName &&
+          // Uteslut dig själv
+          (m.person.firstName !== this.match.person.firstName ||
+            m.person.lastName !== this.match.person.lastName)
+      );
+    },
   },
   methods: {
     getPercentage(score) {
@@ -108,12 +137,23 @@ export default {
         this.loading = false;
       }
     },
+    async fetchAllMatches() {
+      try {
+        const response = await fetch("http://localhost:3001/api/matches");
+        if (!response.ok) throw new Error("Kunde inte hämta matcher");
+        this.allMatches = await response.json();
+      } catch (e) {
+        // Ignorera fel här, det är bara för extrainfo
+        this.allMatches = [];
+      }
+    },
     async cleanupMeFile() {
       await fetch("http://localhost:3001/api/me", { method: "DELETE" });
     }
   },
   mounted() {
     this.fetchMatch();
+    this.fetchAllMatches();
   },
   beforeUnmount() {
     this.cleanupMeFile();
@@ -130,7 +170,7 @@ export default {
   max-width: 900px;
   margin: 0 auto;
   padding: 2rem 1rem;
-  background: #f8f9fa; /* Behåll denna för att "skydda" mittenrutan */
+  background: #f8f9fa;
   border-radius: 1rem;
   box-shadow: 0 2px 12px rgba(0,0,0,0.07);
 }
@@ -280,6 +320,19 @@ export default {
 .circle-fg {
   transform: rotate(-90deg);
   transform-origin: 50% 50%;
+}
+.same-choice-section {
+  margin-top: 1.2rem;
+  background: #f0f7ff;
+  border-radius: 0.5rem;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+}
+
+
+.same-choice-name {
+  color: #111;
+  font-weight: 500;
 }
 @media (max-width: 900px) {
   .matches-list {
