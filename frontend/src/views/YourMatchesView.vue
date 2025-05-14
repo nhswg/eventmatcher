@@ -1,6 +1,6 @@
 <template>
   <div class="people-view">
-    <h1>Dina toppmatchade utställare</h1>
+    <h1>Matchmaking with exhibitors</h1>
     <div v-if="loading" class="loading">Laddar matcher...</div>
     <div v-if="error" class="error">{{ error }}</div>
     <div v-if="match && match.top_matches.length" class="person-card">
@@ -10,10 +10,10 @@
         <span class="person-interests">
           <span v-for="(interest, i) in match.person.interests" :key="i" class="interest-chip">{{ interest }}</span>
         </span>
-        <span class="person-goal">Mål: {{ match.person.eventGoals[0] }}</span>
+        <span class="person-goal"> Goal: {{ match.person.eventGoals[0] }}</span>
       </div>
       <div class="matches-section">
-        <h3>Topp 3 utställare</h3>
+        <h3>Top 3 exhibitors for you:</h3>
         <div class="matches-list">
           <div
             v-for="(top, i) in match.top_matches"
@@ -64,7 +64,7 @@
               <span class="match-interests">
                 <span v-for="(interest, j) in top.exhibitor.interests" :key="j" class="interest-chip">{{ interest }}</span>
               </span>
-              <span class="match-goal">Mål: {{ top.exhibitor.eventGoals[0] }}</span>
+              <span class="match-goal"> Goal: {{ top.exhibitor.eventGoals[0] }}</span>
             </div>
           </div>
         </div>
@@ -208,6 +208,7 @@ export default {
   flex-wrap: wrap;
   gap: 0.3rem;
   margin-bottom: 0.2rem;
+  justify-content: center;
 }
 .person-goal {
   font-size: 1rem;
