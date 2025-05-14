@@ -101,7 +101,7 @@ for person in people:
         {"exhibitor": exhibitor, "score": match_score(person, exhibitor)}
         for exhibitor in exhibitors
     ]
-    top3 = sorted(scored, key=lambda x: x["score"], reverse=True)[:3]
-    results.append({"person": person, "top_matches": top3})
+    sorted_matches = sorted(scored, key=lambda x: x["score"], reverse=True)
+    results.append({"person": person, "all_matches": sorted_matches})
 
 print(json.dumps(results, ensure_ascii=False, indent=2))

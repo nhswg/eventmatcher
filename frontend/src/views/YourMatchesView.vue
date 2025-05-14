@@ -3,21 +3,29 @@
     <h1>MATCHMAKING</h1>
     <div v-if="loading" class="loading">Laddar matcher...</div>
     <div v-if="error" class="error">{{ error }}</div>
-    <div v-if="match && match.top_matches.length" class="person-card">
+    <div v-if="match && match.all_matches && displayedMatches.length" class="person-card">
       <div class="person-header">
         <span class="person-name">{{ match.person.firstName }} {{ match.person.lastName }}</span>
         <span class="person-job">{{ match.person.jobTitle }} ({{ match.person.jobArea }})</span>
         <div class="person-divider"></div>
         <span class="person-interests">
-          <span v-for="(interest, i) in match.person.interests" :key="i" class="interest-chip">{{ interest }}</span>
+          <span
+            v-for="(interest, i) in match.person.interests"
+            :key="i"
+            class="interest-chip"
+          >
+            {{ interest }}
+          </span>
         </span>
-        <span class="person-goal"> Primary event goal: {{ match.person.eventGoals[0] }}</span>
+        <span class="person-goal">
+          Primary event goal: {{ match.person.eventGoals[0] }}
+        </span>
       </div>
       <div class="matches-section">
         <h3>Your Top 3 Matches:</h3>
         <div class="matches-list">
           <div
-            v-for="(top, i) in match.top_matches"
+            v-for="(top, i) in displayedMatches"
             :key="i"
             class="match-card"
             :class="{ 'best-match': i === 0 }"
@@ -47,7 +55,14 @@
                     stroke-linecap="round"
                   />
                   <g>
-                    <text x="20" y="24" text-anchor="middle" font-size="13" fill="#0b3866" font-weight="bold">
+                    <text
+                      x="20"
+                      y="24"
+                      text-anchor="middle"
+                      font-size="13"
+                      fill="#0b3866"
+                      font-weight="bold"
+                    >
                       {{ getPercentage(top.score) }}%
                     </text>
                   </g>
@@ -55,18 +70,33 @@
               </div>
             </div>
             <div class="match-header">
-              <span class="match-company" v-if="top.exhibitor.company">{{ top.exhibitor.company }}</span>
+              <span
+                class="match-company"
+                v-if="top.exhibitor.company"
+              >
+                {{ top.exhibitor.company }}
+              </span>
               <div class="match-divider"></div>
               <span class="match-name">
                 {{ top.exhibitor.firstName }} {{ top.exhibitor.lastName }}
               </span>
-              <span class="match-job">{{ top.exhibitor.jobTitle }}</span>
-              <span class="match-interests">
-                <span v-for="(interest, j) in top.exhibitor.interests" :key="j" class="interest-chip">{{ interest }}</span>
+              <span class="match-job">
+                {{ top.exhibitor.jobTitle }}
               </span>
-              <span class="match-goal"> Primary event goal: {{ top.exhibitor.eventGoals[0] }}</span>
+              <span class="match-interests">
+                <span
+                  v-for="(interest, j) in top.exhibitor.interests"
+                  :key="j"
+                  class="interest-chip"
+                >
+                  {{ interest }}
+                </span>
+              </span>
+              <span class="match-goal">
+                Primary event goal: {{ top.exhibitor.eventGoals[0] }}
+              </span>
             </div>
-
+            <button class="refresh-btn" @click="refreshMatch(i)">Swap</button>
             <template v-if="i === 0 && sameFirstChoicePeople.length">
               <div class="others-matched-section">
                 <div class="others-matched-title">Others who matched:</div>
@@ -87,13 +117,14 @@
       </div>
     </div>
     <div v-else-if="!loading && !error">
-      <div class="error">Ingen persondata hittades. Gå tillbaka och fyll i formuläret.</div>
+      <div class="error">
+        Ingen persondata hittades. Gå tillbaka och fyll i formuläret.
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-
 export default {
   name: "YourMatchesView",
   data() {
@@ -103,40 +134,57 @@ export default {
       error: null,
       bestMatchColor: "#1976d2",
       circumference: 2 * Math.PI * 18,
-      allMatches: [], // Lägg till denna
+      allMatches: [],
+      displayedIndexes: [0, 1, 2], // index i all_matches som visas på plats 1, 2, 3
     };
   },
   computed: {
+    displayedMatches() {
+      if (!this.match || !this.match.all_matches) return [];
+      return this.displayedIndexes.map(idx => this.match.all_matches[idx]);
+    },
     sameFirstChoicePeople() {
       if (!this.match || !this.allMatches.length) return [];
-      const myFirst = this.match.top_matches[0];
+      const myFirst = this.match.all_matches[this.displayedIndexes[0]];
       if (!myFirst) return [];
-      // Jämför på namn (eller annan unik identifierare om finns)
       return this.allMatches.filter(
         m =>
-          m.top_matches &&
-          m.top_matches.length &&
-          m.top_matches[0].exhibitor.firstName === myFirst.exhibitor.firstName &&
-          m.top_matches[0].exhibitor.lastName === myFirst.exhibitor.lastName &&
-          // Uteslut dig själv
+          m.all_matches &&
+          m.all_matches.length &&
+          m.all_matches[0].exhibitor.firstName === myFirst.exhibitor.firstName &&
+          m.all_matches[0].exhibitor.lastName === myFirst.exhibitor.lastName &&
           (m.person.firstName !== this.match.person.firstName ||
             m.person.lastName !== this.match.person.lastName)
       );
     },
   },
   methods: {
+    refreshMatch(pos) {
+      if (!this.match || !this.match.all_matches) return;
+      const used = new Set(this.displayedIndexes);
+      let nextIdx = this.displayedIndexes[pos] + 1;
+      while (nextIdx < this.match.all_matches.length && used.has(nextIdx)) {
+        nextIdx++;
+      }
+      if (nextIdx < this.match.all_matches.length) {
+        // Gör en kopia och byt ut indexet, så Vue ser ändringen
+        const newIndexes = [...this.displayedIndexes];
+        newIndexes[pos] = nextIdx;
+        this.displayedIndexes = newIndexes;
+      }
+    },
     getPercentage(score) {
-      let percent = Math.round(Math.max(0, Math.min(100, score)));
-      return percent;
+      return Math.round(Math.max(0, Math.min(100, score)));
     },
     async fetchMatch() {
       this.loading = true;
       this.error = null;
       try {
         const response = await fetch("http://localhost:3001/api/me/matches");
-        if (!response.ok) throw new Error("Matchning misslyckades");
+        if (!response.ok) throw new Error();
         this.match = await response.json();
-      } catch (e) {
+        this.displayedIndexes = [0, 1, 2];
+      } catch {
         this.error = "Kunde inte hämta matchningsresultat.";
       } finally {
         this.loading = false;
@@ -145,10 +193,9 @@ export default {
     async fetchAllMatches() {
       try {
         const response = await fetch("http://localhost:3001/api/matches");
-        if (!response.ok) throw new Error("Kunde inte hämta matcher");
+        if (!response.ok) throw new Error();
         this.allMatches = await response.json();
-      } catch (e) {
-        // Ignorera fel här, det är bara för extrainfo
+      } catch {
         this.allMatches = [];
       }
     },
@@ -188,9 +235,10 @@ export default {
   color: #0b3866;
   margin-top: 0.3rem;
   margin-bottom: 1.5rem;
-  font-style: italic  ;
+  font-style: italic;
 }
-.loading, .error {
+.loading,
+.error {
   margin: 1rem 0;
   font-size: 1.2rem;
   text-align: center;
@@ -282,6 +330,9 @@ export default {
   border: 2px solid #e0e0e0;
   transition: border 0.2s;
   overflow: visible;
+  position: relative;
+  padding-bottom: 3.2rem; /* ge plats för knappen */
+  margin-bottom: 2.5rem;
 }
 .match-card.best-match {
   border: 2.5px solid #1976d2;
@@ -313,7 +364,6 @@ export default {
 .match-name {
   font-size: 1.3rem;
   font-weight: 600;
-  
   color: #1976d2;
 }
 .match-company {
@@ -327,7 +377,6 @@ export default {
   border-bottom: 2px solid #e0e0e0;
   margin-bottom: 0.5rem;
 }
-
 .match-job {
   display: block;
   font-size: 1rem;
@@ -361,6 +410,27 @@ export default {
   box-sizing: border-box;
   font-family: inherit;
   font-weight: 500;
+}
+.refresh-btn {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 50%);
+  background: #e3f0fd;
+  color: #1976d2;
+  border: 1.5px solid #b6d4fa;
+  border-radius: 0.5rem;
+  padding: 0.4rem 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.10);
+}
+.refresh-btn:hover {
+  background: #1976d2;
+  color: #fff;
 }
 .circle-container {
   width: 44px;
