@@ -153,6 +153,7 @@ select {
   transition: border 0.18s, box-shadow 0.18s;
   box-shadow: 0 1px 4px rgba(44,62,80,0.07);
   outline: none;
+  box-sizing: border-box; 
 }
 
 input:focus,
