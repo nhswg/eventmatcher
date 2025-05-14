@@ -8,8 +8,8 @@
       <div class="main-buttons">
         <router-link to="/matchmaker/"><button class="matchmake-btn">MATCHMAKE ME!</button></router-link>
         <div class="extra-buttons">
-          <router-link to="/people/"><button class="extra-button">PEOPLE</button></router-link>
-          <router-link to="/exhibitors/"><button class="extra-button">EXHIBITORS</button></router-link>
+          
+          <router-link to="/exhibitors/"><button class="extra-button">REGISTER EXHIBITOR</button></router-link>
         </div>
       </div>
     </main>

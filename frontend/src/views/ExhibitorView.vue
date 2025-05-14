@@ -1,6 +1,6 @@
 <template>
   <div class="web-container">
-    <h1>REGISTER (EXHIBITOR)</h1>
+    <h1>REGISTER EXHIBITOR</h1>
     <ExhibitorForm />
   </div>
 </template>
